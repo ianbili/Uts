@@ -1,0 +1,27 @@
+langkah - langkah untuk menjalankan docker
+Teknologi Cloud
+
+- download "Centos7_Server.ova" di url: http://luthfanhp.akakom.ac.id/download
+- baca file "Centos7_Server-Readme.txt", ikuti langkah-langkah deployment VM
+- untuk mengakses VM menggunakan putty, IP VM yang digunakan adalah "enp0s8"
+- install requirment, # yum install -y yum-utils device-mapper-persistent-data lvm2
+- install repo docker, # yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+- install docker, # yum -y install docker-ce docker-ce-cli containerd.io
+- jalankan docker, # systemctl start docker
+- cek apakah docker sudah bisa running, # docker run hello-world
+- install portainer, # docker run -d -p 9000:9000 --name portainer_agent --restart=always -v /etc/localtime:/etc/localtime:ro -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+- First setup portainer, jika kita pertama kali mengakses portainer kita akan diminta untuk membuat user admin (browser):
+  http://<IP-VM_enp0s8>:9000/#/init/admin
+  user: admin, pass: adminadmin
+  pada tampilan awal landing page, pilih menu "manage the local docker environment", kemudian klik "connect"
+  pada tampilan dashboard, klik pada "local" docker
+- Accessing portainer (browser), jika kita mengakses untuk yang ke dua kali dan seterusnya:
+  http://<IP-VM_enp0s8>:9000
+  user: admin, pass: adminadmin
+- menjalankan container linux "alpine/nginx"
+  1. dari CLI jalankan perintah # docker run -d --name mynginx -p 80:80 sickp/alpine-nginx
+  2. dari browser ketikkan URL: http://<IP-VM_enp0s8>
+- menjalankan container linux "centos-nginx", (tidak masuk listing)
+  1. buka url: https://hub.docker.com/, cari image centos7 nginx, contoh hasil: centos/nginx-112-centos7
+  2. pada web portainer, klik pada menu "Images", pada text field "Image", ketikkan nama image, misalkan "centos/nginx-112-centos7", kemudian klik button "pull the image"
+  3. klik pada menu "Containers", klik pada button "Add container", Berikan nama container pada text field "Name" dengan "c7nginx_NIM", isikan nama image yang sudah didownload tadi pada text field "Image", disable button "Always pull the image", scrool ke bawah klik pada button "Deploy the container"
