@@ -21,7 +21,7 @@ Teknologi Cloud
 - menjalankan container linux "alpine/nginx"
   1. dari CLI jalankan perintah # docker run -d --name mynginx -p 80:80 sickp/alpine-nginx
   2. dari browser ketikkan URL: http://<IP-VM_enp0s8>
-- menjalankan container linux "centos-nginx", (tidak masuk listing)
+- menjalankan container linux "centos-nginx",
   1. buka url: https://hub.docker.com/, cari image centos7 nginx, contoh hasil: centos/nginx-112-centos7
   2. pada web portainer, klik pada menu "Images", pada text field "Image", ketikkan nama image, misalkan "centos/nginx-112-centos7", kemudian klik button "pull the image"
   3. klik pada menu "Containers", klik pada button "Add container", Berikan nama container pada text field "Name" dengan "c7nginx_NIM", isikan nama image yang sudah didownload tadi pada text field "Image", disable button "Always pull the image", scrool ke bawah klik pada button "Deploy the container"
